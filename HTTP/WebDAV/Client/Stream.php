@@ -163,7 +163,16 @@ class HTTP_WebDAV_Client_Stream
      */
     var $locktoken = false;
 
-    var $auth_scheme = HTTP_Request2::AUTH_DIGEST;
+    /**
+     * HTTP Auth Method
+     * Options:
+     *
+     * HTTP_Request2::AUTH_DIGEST
+     * HTTP_Request2::AUTH_BASIC
+     *
+     * @var string
+     */
+    var $auth_scheme = HTTP_Request2::AUTH_BASIC;
     /**
      * Stream wrapper interface open() method
      *
@@ -768,7 +777,7 @@ class HTTP_WebDAV_Client_Stream
      * @access public, static
      * @return bool   true on success (even if SSL doesn't work)
      */
-    function register() 
+    public static function register()
     {
         // check that we have the required feature
         if (!function_exists("stream_register_wrapper")) {
